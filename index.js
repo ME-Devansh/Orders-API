@@ -1,7 +1,9 @@
 require("dotenv").config();
 const express = require("express");
 const connectDB = require("./db/connect");
-
+const authRouter = require("./routes/auth");
+const ordersRouter = require("./routes/orders");
+const auth = require("./middleware/authentication");
 const app = express();
 
 app.get("/", (req, res) => {
@@ -18,8 +20,8 @@ app.get("/", (req, res) => {
 // We will need the user_id, sub_total, phone_number to add any order
 // Get order detail: url/get-order (GET request)
 
-// app.use("/login-user", authRouter);
-// app.use("/order", auth, ordersRouter);
+app.use("/auth", authRouter);
+app.use("/order", auth, ordersRouter);
 
 const port = process.env.PORT || 3000;
 
