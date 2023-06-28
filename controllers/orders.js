@@ -3,7 +3,7 @@ const { StatusCodes } = require("http-status-codes");
 
 const getOrders = async (req, res) => {
 	const orders = await Order.find({ userId: req.user.userId });
-	res.status(StatusCodes.OK).json({ orders, count: jobs.length });
+	res.status(StatusCodes.OK).json({ orders, count: orders.length });
 };
 
 const addOrder = async (req, res) => {
