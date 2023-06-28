@@ -36,9 +36,13 @@ UserSchema.methods.getName = function () {
 };
 
 UserSchema.methods.createJWT = function () {
-	return jwt.sign({ userId: this._id, name: this.name }, "jwtsecret", {
-		expiresIn: "30d",
-	});
+	return jwt.sign(
+		{ userId: this._id, name: this.name, phoneNumber: this.phoneNumber },
+		"jwtsecret",
+		{
+			expiresIn: "30d",
+		}
+	);
 };
 
 UserSchema.methods.comparePassword = async function (candidatePassword) {
